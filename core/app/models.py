@@ -1,9 +1,6 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 class Profile(models.Model):
   chatId = models.PositiveBigIntegerField(verbose_name = "ID пользователя", unique = True)
   username = models.CharField(max_length = 50, verbose_name = "Имя Пользователя")
@@ -32,6 +29,3 @@ class Answer(models.Model):
   class Meta:
     verbose_name = "Ответ"
     verbose_name_plural = "Ответы"
-=======
->>>>>>> main
->>>>>>> Stashed changes
