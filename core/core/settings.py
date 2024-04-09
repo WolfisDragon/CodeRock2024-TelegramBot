@@ -25,6 +25,14 @@ SECRET_KEY = 'django-insecure-l16ex+6&o&*7#sg@k=t+7_!8t8s1cj-g@6zbmkpg-ac^)h95qa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+TOKEN = ''
+
+=======
+>>>>>>> main
+>>>>>>> Stashed changes
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    'app'
+=======
+>>>>>>> main
+>>>>>>> Stashed changes
 ]
 
 MIDDLEWARE = [
