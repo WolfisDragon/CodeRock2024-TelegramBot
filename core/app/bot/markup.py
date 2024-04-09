@@ -1,5 +1,6 @@
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-async def startmarkup():
+
+async def startMarkup():
     markups = InlineKeyboardMarkup()
     markups.add(InlineKeyboardButton('задать вопрос', callback_data = 'questionData'))
     markups.add(InlineKeyboardButton('профиль', callback_data = 'profileData'))

@@ -1,21 +1,25 @@
-import telebot
-from telebot.async_telebot import AsyncTeleBot
-from app.bot.markup import startmarkup
+from django.conf import settings
 
-bot = AsyncTeleBot('6543777887:AAFgXq6i6IM8okrRT8057UMlOBFtZBlyUes')
+from telebot.async_telebot import AsyncTeleBot
+from app.bot.markup import startMarkup
+from telebot import logger
+
+
+bot = AsyncTeleBot(token=settings.BOT_TOKEN, parse_mode='HTML')
+logger.setLevel(settings.LOG_LEVEL)
 
 @bot.message_handler(commands=['start'])
 async def start(msg):
-    markup = await startmarkup()
+    markup = await startMarkup()
     await bot.send_message(msg.chat.id, 'mq', reply_markup=markup)
     
-@bot.callback_query_handler()
-async def startbuttons(msg):
-    if msg.data == 'questionData':
+@bot.callback_query_handler(func=lambda call: True)
+async def startButtons(call):
+    if call.data == 'questionData':
         pass 
-    elif msg.data == 'profileData':
+    elif call.data == 'profileData':
         pass
-    elif msg.data == 'questionList':
+    elif call.data == 'questionList':
         pass
-    elif msg.data == 'notificationsSubscription':
+    elif call.data == 'notificationsSubscription':
         pass

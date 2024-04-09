@@ -10,6 +10,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            asyncio.run(bot.polling())
+            asyncio.run(bot.polling(non_stop=True))
         except Exception as err:
             logging.error(f'Error: {err}')
