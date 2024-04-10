@@ -1,5 +1,5 @@
 from django.conf import settings
-from app.bot.db import adduser
+from app.bot.db import adduser, addQuestion
 
 from telebot import TeleBot
 from app.bot.markup import startMarkup
@@ -32,4 +32,9 @@ def startButtons(call):
         pass
 
 def sendQuestion(msg):
-    bot.reply_to(msg, "Вопрос сохранён")
+    try:
+        addQuestion(msg)
+        bot.reply_to(msg, "Вопрос сохранён")
+
+    except Exception as e:
+        bot.reply_to(msg, 'Error')
