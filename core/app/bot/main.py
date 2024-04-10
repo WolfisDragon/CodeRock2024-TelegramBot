@@ -2,7 +2,7 @@ from django.conf import settings
 from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer
 
 from telebot import TeleBot
-from app.bot.markup import startMarkup, answerQustion
+from app.bot.markup import startMarkup, answerQuestion
 from telebot import logger
 
 
@@ -28,10 +28,10 @@ def startButtons(call):
         profile = getprofile(call.message)
         bot.send_message(call.message.chat.id, f"Ваш профиль\nID {profile[0]}\nUsername @{profile[1]}")
     elif call.data == 'questionList':
-        qustions = getQuestion()
-        answerMarkup = answerQustion()
-        for qustion in qustions:
-            bot.send_message(call.message.chat.id, qustion, reply_markup=answerMarkup)
+        questions = getQuestion()
+        answerMarkup = answerQuestion()
+        for question in questions:
+            bot.send_message(call.message.chat.id, question, reply_markup=answerMarkup)
     elif call.data == 'notificationsSubscription':
         pass
     elif call.data == 'answer':

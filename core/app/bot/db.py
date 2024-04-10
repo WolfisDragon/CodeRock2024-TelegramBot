@@ -11,10 +11,10 @@ def getprofile(msg):
     return userProfile
 
 def getQuestion():
-  qustionList = []
-  for qustion in Question.objects.values_list('text').all():
-    qustionList += qustion
-  return qustionList
+  questionList = []
+  for question in Question.objects.values_list('text').all():
+    questionList += question
+  return questionList
 
 def addAnswer(msg, callmsg):
   Answer.objects.create(text=msg.text, questionId = Question.objects.get(text=callmsg))
