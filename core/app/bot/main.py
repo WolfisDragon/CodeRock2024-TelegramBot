@@ -12,7 +12,11 @@ logger.setLevel(settings.LOG_LEVEL)
 async def start(msg):
     markup = await startMarkup()
     await bot.send_message(msg.chat.id, 'mq', reply_markup=markup)
-    
+
+@bot.message_handler(commands=['admin'])
+async def adminPanel(msg):
+    pass
+
 @bot.callback_query_handler(func=lambda call: True)
 async def startButtons(call):
     if call.data == 'questionData':
