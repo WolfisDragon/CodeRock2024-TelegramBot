@@ -29,9 +29,13 @@ def startButtons(call):
         bot.send_message(call.message.chat.id, f"Ваш профиль\nID {profile[0]}\nUsername @{profile[1]}")
     elif call.data == 'questionList':
         questions = getQuestion()
-        answerMarkup = answerQuestion()
-        for question in questions:
-            bot.send_message(call.message.chat.id, question, reply_markup=answerMarkup)
+        print(questions)
+        if questions == []:
+            bot.send_message(call.message.chat.id, 'Нет активных вопросов')
+        else:
+            answerMarkup = answerQuestion()
+            for question in questions:
+                bot.send_message(call.message.chat.id, question, reply_markup=answerMarkup)
     elif call.data == 'notificationsSubscription':
         pass
     elif call.data == 'answer':

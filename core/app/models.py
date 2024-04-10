@@ -17,6 +17,9 @@ class Profile(models.Model):
 class Tag(models.Model):
   name = models.CharField(max_length=50)
 
+  def __str__(self):
+    return f'{self.name}'
+
   class Meta:
     verbose_name = "Тег"
     verbose_name_plural = "Теги"
@@ -27,6 +30,9 @@ class Question(models.Model):
   tagId = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
   isModerate = models.BooleanField(default=False)
 
+  def __str__(self):
+    return f'{self.text}'
+
   class Meta:
     verbose_name = "Вопрос"
     verbose_name_plural = "Вопросы"
@@ -35,6 +41,9 @@ class Answer(models.Model):
   text = models.TextField(max_length=300)
   questionId = models.ForeignKey(Question, on_delete=models.CASCADE)
   isModerate = models.BooleanField(default=False)
+
+  def __str__(self):
+    return f'{self.text}'
 
   class Meta:
     verbose_name = "Ответ"

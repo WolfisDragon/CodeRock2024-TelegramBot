@@ -12,7 +12,7 @@ def getprofile(msg):
 
 def getQuestion():
   questionList = []
-  for question in Question.objects.values_list('text').all():
+  for question in Question.objects.values_list('text').filter(isModerate= True):
     questionList += question
   return questionList
 
