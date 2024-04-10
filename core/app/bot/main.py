@@ -1,5 +1,5 @@
 from django.conf import settings
-from app.bot.db import adduser, addQuestion
+from app.bot.db import adduser, addQuestion, getprofile
 
 from telebot import TeleBot
 from app.bot.markup import startMarkup
@@ -25,7 +25,9 @@ def startButtons(call):
         msg = bot.send_message(call.message.chat.id, "Задай вопрос")
         bot.register_next_step_handler(msg, sendQuestion)
     elif call.data == 'profileData':
-        pass
+        profile = getprofile(call.message)
+        print(profile)
+        bot.send_message(call.message.chat.id, f"Ваш профиль\nID {profile[0]}\nUsername @{profile[1]}")
     elif call.data == 'questionList':
         pass
     elif call.data == 'notificationsSubscription':

@@ -5,3 +5,7 @@ def adduser(msg):
 
 def addQuestion(msg):
   Question.objects.create(text = msg.text)
+
+def getprofile(msg):
+  for userProfile in Profile.objects.values_list('chatId', 'username').filter(chatId = msg.chat.id):
+    return userProfile
