@@ -14,6 +14,10 @@ class ProfileAdmin(admin.ModelAdmin):
 class ProfileAdmin(admin.ModelAdmin):
   list_display = ['text', 'tagId', 'isModerate']
 
+@admin.register(Answer)
+class ProfileAdmin(admin.ModelAdmin):
+  list_display = ['text', 'questionId', 'isModerate']
+
 @admin.register(Admin)
 class ProfileAdmin(admin.ModelAdmin):
   list_display = ['chatId', 'login', 'password']

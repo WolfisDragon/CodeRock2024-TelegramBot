@@ -9,3 +9,12 @@ def addQuestion(msg):
 def getprofile(msg):
   for userProfile in Profile.objects.values_list('chatId', 'username').filter(chatId = msg.chat.id):
     return userProfile
+
+def getQuestion():
+  qustionList = []
+  for qustion in Question.objects.values_list('text').all():
+    qustionList += qustion
+  return qustionList
+
+def addAnswer(msg, callmsg):
+  Answer.objects.create(text=msg.text, questionId = Question.objects.get(text=callmsg))
