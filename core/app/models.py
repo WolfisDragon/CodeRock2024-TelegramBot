@@ -9,7 +9,7 @@ class Profile(models.Model):
 
   def __str__(self):
     return f'{self.chatId} {self.username}'
-  
+
   class Meta:
     verbose_name = "Пользователь"
     verbose_name_plural = "Пользователи"
