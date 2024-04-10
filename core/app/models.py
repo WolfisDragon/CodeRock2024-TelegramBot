@@ -1,9 +1,11 @@
 from django.db import models
 
 
+# Create your models here.
 class Profile(models.Model):
   chatId = models.PositiveBigIntegerField(verbose_name = "ID пользователя", unique = True)
   username = models.CharField(max_length = 50, verbose_name = "Имя Пользователя")
+
 
   def __str__(self):
     return f'{self.chatId} {self.username}'
