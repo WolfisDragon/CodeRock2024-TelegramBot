@@ -1,5 +1,5 @@
 from django.conf import settings
-from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer
+from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer
 
 from telebot import TeleBot
 from app.bot.markup import startMarkup, answerQuestion
@@ -29,7 +29,6 @@ def startButtons(call):
         bot.send_message(call.message.chat.id, f"Ваш профиль\nID {profile[0]}\nUsername @{profile[1]}")
     elif call.data == 'questionList':
         questions = getQuestion()
-        print(questions)
         if questions == []:
             bot.send_message(call.message.chat.id, 'Нет активных вопросов')
         else:
@@ -41,6 +40,14 @@ def startButtons(call):
     elif call.data == 'answer':
         msg = bot.send_message(call.message.chat.id, f'Введите ответ на вопрос "{call.message.text}"')
         bot.register_next_step_handler(msg, sendAnswer, call.message.text)
+
+    elif call.data == 'viewAnswer':
+        answers = viewAnswer(call.message.text)
+        if answers == []:
+            bot.send_message(call.message.chat.id, 'Нет ответов')
+        else:
+            for answer in answers:
+                bot.send_message(call.message.chat.id, f'Ответ: {answer}')
 
 def sendQuestion(msg):
     try:
