@@ -10,5 +10,6 @@ def startMarkup():
 
 def answerQuestion():
     answerMarkup = InlineKeyboardMarkup()
+    answerMarkup.add(InlineKeyboardButton('посмотреть ответы', callback_data='viewAnswer'))
     answerMarkup.add(InlineKeyboardButton('ответить на вопрос', callback_data='answer'))
     return answerMarkup
