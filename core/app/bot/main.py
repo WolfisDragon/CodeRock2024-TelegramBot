@@ -1,5 +1,5 @@
 from django.conf import settings
-from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer, checkLog, checkPass, viewQuestionsToModerate, viewAnswersToModerate, getQ, questionApprove, answerApprove, questionDelete, answerDelete
+from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer, checkLog, checkPass, viewQuestionsToModerate, viewAnswersToModerate, getQ, questionApprove, answerApprove, questionDelete, questionDelete, answerDelete
 
 from telebot import TeleBot
 from app.bot.markup import startMarkup, answerQuestion, adminPanelMarkup, moderateQuestionMarkup, moderateAnswerMarkup

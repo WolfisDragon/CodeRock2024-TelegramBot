@@ -26,7 +26,7 @@ class Tag(models.Model):
 
 
 class Question(models.Model):
-  text = models.TextField(max_length=300)
+  text = models.TextField(max_length=300, unique=True)
   isModerate = models.BooleanField(default=False)
 
   def __str__(self):
@@ -37,7 +37,7 @@ class Question(models.Model):
     verbose_name_plural = "Вопросы"
 
 class Answer(models.Model):
-  text = models.TextField(max_length=300)
+  text = models.TextField(max_length=300, unique=True)
   questionId = models.ForeignKey(Question, on_delete=models.CASCADE)
   isModerate = models.BooleanField(default=False)
 
