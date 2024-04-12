@@ -27,7 +27,6 @@ class Tag(models.Model):
 
 class Question(models.Model):
   text = models.TextField(max_length=300)
-  tagId = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
   isModerate = models.BooleanField(default=False)
 
   def __str__(self):

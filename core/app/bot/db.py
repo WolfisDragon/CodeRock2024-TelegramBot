@@ -55,3 +55,21 @@ def getQ(msg):
   for id in Answer.objects.values_list('questionId').filter(text = msg):
     q = Question.objects.get(id = id[0])
     return q
+  
+def questionApprove(msg):
+  question = Question.objects.get(text=msg)
+  question.isModerate = True
+  question.save()
+
+def answerApprove(msg):
+  answer = Answer.objects.get(text=msg)
+  answer.isModerate = True
+  answer.save()
+
+def questionDelete(msg):
+  question = Question.objects.get(text=msg)
+  question.delete()
+
+def answerDelete(msg):
+  answer = Answer.objects.get(text=msg)
+  answer.delete()

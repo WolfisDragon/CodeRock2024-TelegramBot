@@ -1,5 +1,5 @@
 from django.conf import settings
-from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer, checkLog, checkPass, viewQuestionsToModerate, viewAnswersToModerate, getQ
+from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer, checkLog, checkPass, viewQuestionsToModerate, viewAnswersToModerate, getQ, questionApprove, answerApprove, questionDelete, answerDelete
 
 from telebot import TeleBot
 from app.bot.markup import startMarkup, answerQuestion, adminPanelMarkup, moderateQuestionMarkup, moderateAnswerMarkup
@@ -56,7 +56,7 @@ def startButtons(call):
             bot.send_message(call.message.chat.id, 'Нет вопросов')
         else:
             for q in questions:
-                bot.send_message(call.message.chat.id, f'Вопрос: {q}', reply_markup=moderateQuestionMarkup())
+                bot.send_message(call.message.chat.id, q, reply_markup=moderateQuestionMarkup())
 
     elif call.data == 'answersModerate':
         answers = viewAnswersToModerate()
@@ -65,19 +65,19 @@ def startButtons(call):
         else:
             for answer in answers:
                 q = getQ(answer)
-                bot.send_message(call.message.chat.id, f'Вопрос: {q}, ответ: {answer}', reply_markup=moderateAnswerMarkup())
+                bot.send_message(call.message.chat.id, answer, reply_markup=moderateAnswerMarkup())
 
     elif call.data == 'approveQuestion':
-        pass
+        questionApprove(call.message.text)
 
     elif call.data == 'deleteQuestion':
-        pass
+        questionDelete(call.message.text)
 
     elif call.data == 'approveAnswer':
-        pass
+        answerApprove(call.message.text)
 
     elif call.data == 'deleteAnswer':
-        pass
+        answerDelete(call.message.text)
 
 def sendQuestion(msg):
     try:
