@@ -52,4 +52,6 @@ def viewAnswersToModerate():
   return answerList
 
 def getQ(msg):
-  return Question.objects.get(text=msg.text)
+  for id in Answer.objects.values_list('questionId').filter(text = msg):
+    q = Question.objects.get(id = id[0])
+    return q

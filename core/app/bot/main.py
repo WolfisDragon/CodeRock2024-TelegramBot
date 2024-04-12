@@ -56,7 +56,7 @@ def startButtons(call):
             bot.send_message(call.message.chat.id, 'Нет вопросов')
         else:
             for q in questions:
-                bot.send_message(call.message.chat.id, f'Вопрос: {q}', reply_markup=moderateQuestionMarkup)
+                bot.send_message(call.message.chat.id, f'Вопрос: {q}', reply_markup=moderateQuestionMarkup())
 
     elif call.data == 'answersModerate':
         answers = viewAnswersToModerate()
@@ -64,8 +64,20 @@ def startButtons(call):
             bot.send_message(call.message.chat.id, 'Нет ответов')
         else:
             for answer in answers:
-                q = getQ(call.message.text)
-                bot.send_message(call.message.chat.id, f'Вопрос: {q}, ответ: {answer}', reply_markup=moderateAnswerMarkup)
+                q = getQ(answer)
+                bot.send_message(call.message.chat.id, f'Вопрос: {q}, ответ: {answer}', reply_markup=moderateAnswerMarkup())
+
+    elif call.data == 'approveQuestion':
+        pass
+
+    elif call.data == 'deleteQuestion':
+        pass
+
+    elif call.data == 'approveAnswer':
+        pass
+
+    elif call.data == 'deleteAnswer':
+        pass
 
 def sendQuestion(msg):
     try:
