@@ -13,3 +13,21 @@ def answerQuestion():
     answerMarkup.add(InlineKeyboardButton('посмотреть ответы', callback_data='viewAnswer'))
     answerMarkup.add(InlineKeyboardButton('ответить на вопрос', callback_data='answer'))
     return answerMarkup
+
+def adminPanelMarkup():
+    adminMarkup = InlineKeyboardMarkup()
+    adminMarkup.add(InlineKeyboardButton('Модерация вопросов', callback_data='questionsModerate'))
+    adminMarkup.add(InlineKeyboardButton('Модерация ответов', callback_data='answersModerate'))
+    return adminMarkup
+
+def moderateQuestionMarkup():
+    moderateMarkup = InlineKeyboardMarkup()
+    moderateMarkup.add(InlineKeyboardButton('одобрить', callback_data = 'approveQuestion'))
+    moderateMarkup.add(InlineKeyboardButton('удалить', callback_data = 'deleteQuestion'))
+    return moderateMarkup
+
+def moderateAnswerMarkup():
+    moderateMarkup = InlineKeyboardMarkup()
+    moderateMarkup.add(InlineKeyboardButton('одобрить', callback_data = 'approveAnswer'))
+    moderateMarkup.add(InlineKeyboardButton('удалить', callback_data = 'deleteAnswer'))
+    return moderateMarkup
