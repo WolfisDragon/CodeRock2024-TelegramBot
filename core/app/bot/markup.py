@@ -5,7 +5,6 @@ def startMarkup():
     markups.add(InlineKeyboardButton('задать вопрос', callback_data = 'askQuestion'))
     markups.add(InlineKeyboardButton('профиль', callback_data = 'profileData'))
     markups.add(InlineKeyboardButton('список вопросов', callback_data = 'questionList'))
-    markups.add(InlineKeyboardButton('рассылка', callback_data = 'notificationsSubscription'))
     return markups
 
 def answerQuestion():

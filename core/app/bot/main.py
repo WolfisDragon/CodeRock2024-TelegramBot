@@ -36,8 +36,6 @@ def startButtons(call):
             answerMarkup = answerQuestion()
             for question in questions:
                 bot.send_message(call.message.chat.id, question, reply_markup=answerMarkup)
-    elif call.data == 'notificationsSubscription':
-        pass
     elif call.data == 'answer':
         msg = bot.send_message(call.message.chat.id, f'Введите ответ на вопрос "{call.message.text}"')
         bot.register_next_step_handler(msg, sendAnswer, call.message.text)
