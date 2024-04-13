@@ -2,16 +2,15 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 def startMarkup():
     markups = InlineKeyboardMarkup()
-    markups.add(InlineKeyboardButton('задать вопрос', callback_data = 'askQuestion'))
-    markups.add(InlineKeyboardButton('профиль', callback_data = 'profileData'))
-    markups.add(InlineKeyboardButton('список вопросов', callback_data = 'questionList'))
-    markups.add(InlineKeyboardButton('рассылка', callback_data = 'notificationsSubscription'))
+    markups.add(InlineKeyboardButton('Задать вопрос', callback_data = 'askQuestion'))
+    markups.add(InlineKeyboardButton('Профиль', callback_data = 'profileData'))
+    markups.add(InlineKeyboardButton('Список вопросов', callback_data = 'questionList'))
     return markups
 
 def answerQuestion():
     answerMarkup = InlineKeyboardMarkup()
-    answerMarkup.add(InlineKeyboardButton('посмотреть ответы', callback_data='viewAnswer'))
-    answerMarkup.add(InlineKeyboardButton('ответить на вопрос', callback_data='answer'))
+    answerMarkup.add(InlineKeyboardButton('Посмотреть ответы', callback_data='viewAnswer'))
+    answerMarkup.add(InlineKeyboardButton('Ответить на вопрос', callback_data='answer'))
     return answerMarkup
 
 def adminPanelMarkup():
@@ -22,12 +21,12 @@ def adminPanelMarkup():
 
 def moderateQuestionMarkup():
     moderateMarkup = InlineKeyboardMarkup()
-    moderateMarkup.add(InlineKeyboardButton('одобрить', callback_data = 'approveQuestion'))
-    moderateMarkup.add(InlineKeyboardButton('удалить', callback_data = 'deleteQuestion'))
+    moderateMarkup.add(InlineKeyboardButton('Одобрить', callback_data = 'approveQuestion'))
+    moderateMarkup.add(InlineKeyboardButton('Удалить', callback_data = 'deleteQuestion'))
     return moderateMarkup
 
 def moderateAnswerMarkup():
     moderateMarkup = InlineKeyboardMarkup()
-    moderateMarkup.add(InlineKeyboardButton('одобрить', callback_data = 'approveAnswer'))
-    moderateMarkup.add(InlineKeyboardButton('удалить', callback_data = 'deleteAnswer'))
+    moderateMarkup.add(InlineKeyboardButton('Одобрить', callback_data = 'approveAnswer'))
+    moderateMarkup.add(InlineKeyboardButton('Удалить', callback_data = 'deleteAnswer'))
     return moderateMarkup
