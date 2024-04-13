@@ -1,8 +1,8 @@
 from django.conf import settings
-from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer
+from app.bot.db import adduser, addQuestion, getprofile, getQuestion, addAnswer, viewAnswer, checkLog, checkPass, viewQuestionsToModerate, viewAnswersToModerate, getQ, questionApprove, answerApprove, questionDelete, questionDelete, answerDelete
 
 from telebot import TeleBot
-from app.bot.markup import startMarkup, answerQuestion
+from app.bot.markup import startMarkup, answerQuestion, adminPanelMarkup, moderateQuestionMarkup, moderateAnswerMarkup
 from telebot import logger
 
 
@@ -17,7 +17,8 @@ def start(msg):
 
 @bot.message_handler(commands=['admin'])
 def adminPanel(msg):
-    pass
+    bot.send_message(msg.chat.id, "Введите ваш логин:")
+    bot.register_next_step_handler(msg, checkLogin)
 
 @bot.callback_query_handler(func=lambda call: True)
 def startButtons(call):
@@ -48,6 +49,35 @@ def startButtons(call):
         else:
             for answer in answers:
                 bot.send_message(call.message.chat.id, f'Ответ: {answer}')
+            
+    elif call.data == 'questionsModerate':
+        questions = viewQuestionsToModerate()
+        if questions == []:
+            bot.send_message(call.message.chat.id, 'Нет вопросов')
+        else:
+            for q in questions:
+                bot.send_message(call.message.chat.id, q, reply_markup=moderateQuestionMarkup())
+
+    elif call.data == 'answersModerate':
+        answers = viewAnswersToModerate()
+        if answers == []:
+            bot.send_message(call.message.chat.id, 'Нет ответов')
+        else:
+            for answer in answers:
+                q = getQ(answer)
+                bot.send_message(call.message.chat.id, answer, reply_markup=moderateAnswerMarkup())
+
+    elif call.data == 'approveQuestion':
+        questionApprove(call.message.text)
+
+    elif call.data == 'deleteQuestion':
+        questionDelete(call.message.text)
+
+    elif call.data == 'approveAnswer':
+        answerApprove(call.message.text)
+
+    elif call.data == 'deleteAnswer':
+        answerDelete(call.message.text)
 
 def sendQuestion(msg):
     try:
@@ -61,5 +91,26 @@ def sendAnswer(msg, callmsg):
     try:
         addAnswer(msg, callmsg)
         bot.reply_to(msg, 'Ответ записан')
+    except Exception as e:
+        bot.reply_to(msg, 'Error')
+
+def checkPassword(msg):
+    try:
+        if checkPass(msg):
+            bot.reply_to(msg, 'Успешная авторизация!')
+            adminMarkup = adminPanelMarkup()
+            bot.send_message(msg.chat.id, "Админ-панель:", reply_markup=adminMarkup)
+        else:
+            bot.reply_to(msg, 'Неверный пароль')
+    except Exception as e:
+        bot.reply_to(msg, 'Error')
+
+def checkLogin(msg):
+    try:
+        if checkLog(msg):
+            bot.reply_to(msg, 'Введите пароль:')
+            bot.register_next_step_handler(msg, checkPassword)
+        else:
+            bot.reply_to(msg, 'Неверный логин')
     except Exception as e:
         bot.reply_to(msg, 'Error')

@@ -12,7 +12,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class ProfileAdmin(admin.ModelAdmin):
-  list_display = ['text', 'tagId', 'isModerate']
+  list_display = ['text', 'isModerate']
 
 @admin.register(Answer)
 class ProfileAdmin(admin.ModelAdmin):
